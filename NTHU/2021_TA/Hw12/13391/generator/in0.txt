@@ -1,0 +1,20 @@
+DeleteFront
+AddBack 7
+DeleteFront
+AddFront 7
+DeleteFront
+AddFront 8
+AddBack 3
+AddFront 5
+AddFront 6
+Swap
+AddFront 5
+AddBack 5
+DeleteFront
+AddFront 1
+AddFront 3
+AddFront 3
+AddBack 6
+AddBack 0
+Delete 3
+AddBack 5

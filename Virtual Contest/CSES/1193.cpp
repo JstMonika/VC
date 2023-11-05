@@ -1,0 +1,130 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using vi = vector<int>;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+template<typename T> using vec = vector<T>;
+template<typename T> using deq = deque<T>;
+template<typename T> using Prior = priority_queue<T>;
+template<typename T> using prior = priority_queue<T, vector<T>, greater<T>>;
+
+#define yccc ios_base::sync_with_stdio(false), cin.tie(0)
+#define endl '\n'
+#define al(a) a.begin(),a.end()
+#define F first
+#define S second
+#define REP(i, n) for(int i = 0; i < n; i++)
+#define REP1(i, n) for(int i = 1; i <= n; i++)
+#define eb emplace_back
+#define pb push_back
+#define mp(a, b) make_pair(a, b)
+#define debug(x) cout << " > " << #x << ": " << x << endl;
+#define devec(v) cout << " > " << #v << ": "; for (auto i : v) cout << i << ' '; cout << endl;
+#define devec2(v) cout << " > " << #v << ":\n"; for (auto i : v) { for (auto k : i) cout << ' ' << k; cout << endl; }
+
+const int INF = numeric_limits<int>::max();
+const int nINF = numeric_limits<int>::min();
+const ll llINF = numeric_limits<long long>::max();
+const int MOD = 1e9+7;
+
+ll& pmod(ll& a, ll b) { a = (a+b) % MOD; return a; }
+ll& pmod(ll& a, ll b, ll c) { a = (a+b) % c; return a; }
+ll& mmod(ll& a, ll b) { a = (a-b+MOD) % MOD; return a; }
+ll& mmod(ll& a, ll b, ll c) { a = (a-b+c) % c; return a; }
+ll& tmod(ll& a, ll b) { a = (a*b) % MOD; return a; }
+ll mul(ll a, ll b) { return (a*b) % MOD; }
+ll mul(ll a, ll b, ll c) { return (a*b) % c; }
+ll mPOW(ll a, ll b) { ll res=1; do { if(b%2) tmod(res,a); tmod(a,a); } while (b>>=1); return res; }
+ll nPOW(ll a, ll b) { ll res=1; do { if(b%2) res*=a; a*=a; } while (b>>=1); return res; }
+ll mFAC(ll a) { ll res = 1; REP1(i, a) tmod(res, i); return res; }
+ll nFAC(ll a) { ll res = 1; REP1(i, a) res*=i; return res; }
+
+template<typename T1, typename T2>
+ostream& operator<<(ostream& out, pair<T1, T2> a) { cout << a.F << ' ' << a.S; return out; }
+
+int main()
+{
+    yccc;
+    
+    int r, c;
+    cin >> r >> c;
+    
+    int sr, sc;
+    vec<vec<char>> _list(r, vec<char>(c));
+    for (int i = 0; i < r; i++)
+        for (int k = 0; k < c; k++) {
+            cin >> _list[i][k];
+            
+            if (_list[i][k] == 'A') {
+                sr = i;
+                sc = k;
+            }
+        }
+    
+    queue<pii> que;
+    que.emplace(sr, sc);
+    int er = -1, ec = -1;
+    
+    int gx[4] = {0, -1, 0, 1};
+    int gy[4] = {1, 0, -1, 0};
+    
+    vec<char> ans;
+    while (!que.empty()) {
+        auto now = que.front();
+        que.pop();
+        
+        if (now.F == er and now.S == ec) {
+            
+            while (_list[er][ec] != 'A') {
+                switch(_list[er][ec]) {
+                    case 0:
+                        ec--;
+                        ans.eb('R');
+                        break;
+                    case 1:
+                        er++;
+                        ans.eb('U');
+                        break;
+                    case 2:
+                        ec++;
+                        ans.eb('L');
+                        break;
+                    case 3:
+                        er--;
+                        ans.eb('D');
+                        break;
+                }
+            }
+            
+            cout << "YES\n" << ans.size() << endl;
+            reverse(al(ans));
+            for (auto i : ans) {
+                cout << i;
+            }
+            
+            return 0;
+        }
+        
+        for (int m = 0; m < 4; m++) {
+            int ni = now.F+gx[m];
+            int nk = now.S+gy[m];
+            
+            if (ni < 0 or ni >= r) continue;
+            if (nk < 0 or nk >= c) continue;
+            if (_list[ni][nk] == '.' or _list[ni][nk] == 'B') {
+                
+                if (_list[ni][nk] == 'B') {
+                    er = ni;
+                    ec = nk;
+                }
+                
+                _list[ni][nk] = m;
+                que.emplace(ni, nk);
+            }
+        }
+    }
+    
+    cout << "NO\n";
+}

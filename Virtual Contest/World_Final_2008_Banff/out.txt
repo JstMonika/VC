@@ -1,0 +1,4 @@
+Case 1: 2 12
+4 2
+5 4
+Case 2: No solution

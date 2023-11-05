@@ -1,0 +1,10 @@
+starbucks starburst 9 6 7
+starbucks stream 6 2 3
+starburst stream 6 2 3
+starbucks starbucks 2 2 2
+starburst starbucks 2 2 2
+stream starbucks 2 2 2
+starbucks stream 2 2 2
+starburst stream 2 2 2
+stream stream 2 2 2
+3 > ANS: 4 0 

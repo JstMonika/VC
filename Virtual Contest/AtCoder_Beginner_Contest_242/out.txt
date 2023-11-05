@@ -1,0 +1,16 @@
+ABC 0 0
+A
+ABC 1 0
+nPOW: 2, go: 0, k: 0
+BC 0 0
+B
+ABC 2 2
+nPOW: 4, go: 0, k: 2
+BC 1 2
+nPOW: 2, go: 1, k: 0
+AB 0 0
+A
+ABC 1 5
+nPOW: 2, go: 2, k: 1
+AB 0 1
+B

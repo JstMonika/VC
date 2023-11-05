@@ -1,0 +1,8 @@
+Gift 1
+Minimum area = 80.000
+Maximum area = 200.000
+
+Gift 2
+Minimum area = 100.000
+Maximum area = 200.000
+
